@@ -9,7 +9,9 @@ class Chat extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'context'
+    ];
 
     protected $casts = [
         'context' => 'array'
