@@ -3,8 +3,8 @@ import ChatContent from "@/Components/ChatContent.vue";
 import ChatLayout from "@/Layouts/ChatLayout.vue";
 import Skeleton from "@/Components/Skeleton.vue";
 import { useForm, Link } from "@inertiajs/vue3";
-import { ref, onMounted, computed } from "vue";
 import { Head } from "@inertiajs/vue3";
+import { ref } from "vue";
 
 const showDeleteButton = ref(false);
 const chatContainer = ref(null);
@@ -151,47 +151,3 @@ const scrollToBottom = () => {
         </template>
     </ChatLayout>
 </template>
-<style>
-.dot-typing {
-    position: relative;
-    left: -9999px;
-    width: 10px;
-    height: 10px;
-    border-radius: 5px;
-    background-color: #9880ff;
-    color: #9880ff;
-    box-shadow: 9984px 0 0 0 #9880ff, 9999px 0 0 0 #9880ff,
-        10014px 0 0 0 #9880ff;
-    animation: dot-typing 1.5s infinite linear;
-}
-@keyframes dot-typing {
-    0% {
-        box-shadow: 9984px 0 0 0 #9880ff, 9999px 0 0 0 #9880ff,
-            10014px 0 0 0 #9880ff;
-    }
-    16.667% {
-        box-shadow: 9984px -10px 0 0 #9880ff, 9999px 0 0 0 #9880ff,
-            10014px 0 0 0 #9880ff;
-    }
-    33.333% {
-        box-shadow: 9984px 0 0 0 #9880ff, 9999px 0 0 0 #9880ff,
-            10014px 0 0 0 #9880ff;
-    }
-    50% {
-        box-shadow: 9984px 0 0 0 #9880ff, 9999px -10px 0 0 #9880ff,
-            10014px 0 0 0 #9880ff;
-    }
-    66.667% {
-        box-shadow: 9984px 0 0 0 #9880ff, 9999px 0 0 0 #9880ff,
-            10014px 0 0 0 #9880ff;
-    }
-    83.333% {
-        box-shadow: 9984px 0 0 0 #9880ff, 9999px 0 0 0 #9880ff,
-            10014px -10px 0 0 #9880ff;
-    }
-    100% {
-        box-shadow: 9984px 0 0 0 #9880ff, 9999px 0 0 0 #9880ff,
-            10014px 0 0 0 #9880ff;
-    }
-}
-</style>
