@@ -6,9 +6,9 @@ import { useForm, Link } from "@inertiajs/vue3";
 import { ref, onMounted, computed } from "vue";
 import { Head } from "@inertiajs/vue3";
 
-const promtInput = ref(null);
-const chatContainer = ref(null);
 const showDeleteButton = ref(false);
+const chatContainer = ref(null);
+const promtInput = ref(null);
 
 const props = defineProps({
     messages: {
@@ -28,7 +28,11 @@ const form = useForm({
 const submit = () => {
     const url = props.chat ? `/chat/${props.chat?.id}` : "/chat";
     form.post(url, {
-        onFinish: () => clear(),
+        onFinish: () => {
+            form.reset();
+            promtInput.value.focus();
+            scrollToBottom();
+        },
     });
 };
 
@@ -38,25 +42,14 @@ const scrollToBottom = () => {
         el.scrollTop = el.scrollHeight;
     }
 };
-
-const clear = () => {
-    form.promt = "";
-    promtInput.value.focus();
-    scrollToBottom();
-};
-
-onMounted(() => {
-    clear();
-});
-const title = computed(() => props.chat?.context[0].content ?? "New Chat");
 </script>
 <template>
-    <Head :title="title" />
+    <Head title="Laravel GPT" />
     <ChatLayout>
         <template #aside>
             <ul class="p-2">
-                <li v-if="chat" class="flex justify-between px-4 py-2 my-2 font-semibold text-green-400 duration-200 rounded-lg bg-slate-900 hover:bg-slate-700">
-                    <Link href="/chat" class="w-full">New Chat</Link>
+                <li class="flex justify-between px-4 py-2 my-2 font-semibold text-green-400 duration-200 rounded-lg bg-slate-900 hover:bg-slate-700">
+                    <Link href="/chat" class="w-full">Start a new chat</Link>
                     <svg xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
@@ -133,7 +126,7 @@ const title = computed(() => props.chat?.context[0].content ?? "New Chat");
                     <div class="relative flex items-center flex-1">
                         <input type="text"
                             class="w-full text-white rounded-lg bg-slate-700"
-                            placeholder="Ask Laravel AI"
+                            placeholder="Ask Laravel GPT a question"
                             v-model="form.promt"
                             @keyup.enter="submit"
                             :disabled="form.processing"
