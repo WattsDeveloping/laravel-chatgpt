@@ -80,9 +80,7 @@ const scrollToBottom = () => {
                                 </svg>
                             </button>
                             <span v-if="showDeleteButton" class="flex justify-between">
-                                <Link :href="route('chat.destroy', chat?.id)" method="DELETE"
-                                    as="button"
-                                    class="text-red-300 hover:text-red-500">
+                                <Link :href="route('chat.destroy', chat?.id)" method="DELETE" as="button" class="text-red-300 hover:text-red-500">
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                         fill="none"
                                         viewBox="0 0 24 24"

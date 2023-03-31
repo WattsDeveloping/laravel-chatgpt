@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Chat;
 use Illuminate\Http\RedirectResponse;
+use App\Models\Chat;
 
 class ChatGptDestroyController extends Controller
 {
