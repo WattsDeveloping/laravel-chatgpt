@@ -27,7 +27,9 @@ class ChatGptStoreController extends Controller
 
         $messages[] = ['role' => 'assistant', 'content' => $response->choices[0]->message->content];
 
-        $chat = Chat::updateOrCreate(['id' => $id, 'user_id' => Auth::id()], [ 'context' => $messages ]);
+        $chat = Chat::updateOrCreate(['id' => $id], [ 'context' => $messages ]);
+        $chat->user()->associate(Auth::id());
+        $chat->save();
 
         return redirect()->route('chat.show', [$chat->id]);
     }
